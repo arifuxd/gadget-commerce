@@ -1,45 +1,30 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
-
-const DemoCarousel = () => {
+import Link from "next/link";
+import { urlFor } from "../lib/client";
+const HeroBanner = ({ heroBanner }) => {
   return (
-    <Carousel
-      className="hero-banner-container"
-      showArrows={false}
-      showThumbs={false}
-      showStatus={false}
-      //   width={1500}
-      autoPlay={true}
-      infiniteLoop={true}
-    >
+    <div className="hero-banner-container">
       <div>
+        <p className="beats-solo">{heroBanner.smallText}</p>
+        <h3>{heroBanner.midText}</h3>
+        <h1>{heroBanner.largeText1}</h1>
         <img
-          width="100%"
-          height="500"
-          style={{ objectFit: "cover" }}
-          src="/images/img-1.jpg"
+          className="hero-banner-image"
+          src={urlFor(heroBanner.image)}
+          alt=""
         />
+        <div>
+          <Link href={`/product/${heroBanner.product}`}>
+            <button type="button">{heroBanner.buttonText}</button>
+          </Link>
+          <div className="desc">
+            <h5>Description</h5>
+            <p>{heroBanner.desc}</p>
+          </div>
+        </div>
       </div>
-      <div>
-        <img
-          width="100%"
-          height="500"
-          style={{ objectFit: "cover" }}
-          src="/images/img-2.jpg"
-        />
-      </div>
-      <div>
-        <img
-          width="100%"
-          height="500"
-          style={{ objectFit: "cover" }}
-          src="/images/img-3.jpg"
-        />
-      </div>
-    </Carousel>
+    </div>
   );
 };
 
-export default DemoCarousel;
+export default HeroBanner;
